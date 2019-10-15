@@ -21,3 +21,15 @@ Primary goal of developing a classificaiton model is to generalize patters so we
 - Bagging
 - GradientBoosting
 
+## Binning
+Summarize data in columns.
+
+General rule of thumb:
+- for all non-numeric type variables (object, category, boolean, e.g.), you will not use the bins argument.
+- for numeric variables where the number of unique values is < 10, you will also not want to use the bins argument.
+- for numeric variables where the number of unique values is >= 10, you will want to use the bins argument.
+    
+Options: (sort, bins, and dropna)
+- `df.sex.value_counts()`
+- `df.fare.value_counts(bins=10, sort=False)`
+- `df.embark_town.value_counts(dropna=False)`
