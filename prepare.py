@@ -12,7 +12,7 @@ warnings.filterwarnings("ignore")
 from sklearn.preprocessing import LabelEncoder
 from sklearn.preprocessing import MinMaxScaler
 
-def prep_titanic(df):
+def prep_titanic_data(df):
     encoder = LabelEncoder()
     scaler = MinMaxScaler()
 
@@ -28,9 +28,8 @@ def prep_titanic(df):
     # Drop the deck column
     df.drop(columns=['deck'], inplace=True)
 
-    # fill in missing ages
-    mean_age = df.age.mean()
-    df.age.fillna(mean_age, inplace=True)
+    # drop columns with missing age
+    df = df[pd.notna(df.age)]
 
     # Add a MinMax scaler for age and fare.
     scaler.fit(df[["age"]])
@@ -43,7 +42,7 @@ def prep_titanic(df):
     return df
 
 
-def prep_iris(df):
+def prep_iris_data(df):
     # drop species_id and #measurement_id
     df.drop(columns=['species_id', 'measurement_id'], inplace=True)
 
